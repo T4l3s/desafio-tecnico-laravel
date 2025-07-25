@@ -3,7 +3,7 @@
 ## Pré-requisitos
 
 - Docker e Docker Compose **OU**
-- PHP >= 8.2 e Composer
+- PHP >= 8.2 Composer e Nodejs
 
 ## Como rodar o projeto
 
@@ -40,6 +40,11 @@ cp .env.example .env
 # Gerar uma key do laravel e fazer uma migration para o db e popular o mesmo.
 php artisan key:generate
 php artisan migrate --seed
+
+# Para os arquivos necessários para o blade funcionar.
+# OBS: Se for usar apenas a api, não é necessário essa instalação.
+npm install
+npm run build
 
 # Iniciar o servidor de desenvolvimento do projeto.
 php artisan serve
