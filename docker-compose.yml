@@ -11,13 +11,12 @@ services:
     volumes:
       - ./deploy/php/php.ini:/usr/local/etc/php/php.ini
       - ./deploy/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
-      - .:/app
+      - .:/var/www/
     env_file:
       - .env
     networks:
       - app-network
-    depends_on:
-      - mysql
+
   mysql:
     image: mysql:8.0
     container_name: ${APP_NAME}-mysql

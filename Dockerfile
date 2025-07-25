@@ -20,9 +20,14 @@ RUN apk add --no-cache \
     && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd intl xml
 
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+
 COPY . /app
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+RUN cp .env.example .env
+
+RUN /usr/local/bin/php /app/artisan key:generate
 
 RUN chown -R www-data:www-data /app
 
