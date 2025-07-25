@@ -57,17 +57,14 @@ class ProdutosController extends Controller
         }
 
         $dados = $request->validate([
-            'nome' => 'sometimes|required|string|max:255',
-            'preco' => 'sometimes|required|numeric|min:0.01',
-            'quantidade' => 'sometimes|required|integer|min:0',
+            'nome' => 'sometimes|string|max:255',
+            'preco' => 'sometimes|numeric|min:0.01',
+            'quantidade' => 'sometimes|integer|min:0',
         ], [
-            'nome.required' => 'O nome é obrigatório.',
             'nome.string' => 'O nome deve ser uma string.',
             'nome.max' => 'O nome deve ter no máximo 255 caracteres.',
-            'preco.required' => 'O preço é obrigatório.',
             'preco.numeric' => 'O preço deve ser um número.',
             'preco.min' => 'O preço deve ser maior que 0.',
-            'quantidade.required' => 'A quantidade é obrigatória.',
             'quantidade.integer' => 'A quantidade deve ser um número inteiro.',
             'quantidade.min' => 'A quantidade não pode ser negativa.',
         ]);
