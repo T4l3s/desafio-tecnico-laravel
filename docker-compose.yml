@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME}-php
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./deploy/php/php.ini:/usr/local/etc/php/php.ini
+      - ./deploy/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - .:/app
+    env_file:
+      - .env
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8.0
+    container_name: ${APP_NAME}-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 12345678
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
