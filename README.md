@@ -59,10 +59,9 @@ php artisan migrate --seed
 
 ## Como testar as funcionalidades
 
-1. Acesse o sistema em `http://localhost:8000`
-2. Utilize as rotas/endpoints conforme o código-fonte
-3. Para rodar testes automatizados, utilize os comandos acima.
+Para testar as funcionalidades da API, basta importar o arquivo `collection.json` no Postman ou Insomnia. Assim, você terá acesso a todas as rotas prontas para uso e poderá realizar os testes de forma prática e rápida.
 
+Além disso, você pode utilizar o CRUD desenvolvido com Blade, acessando pelo navegador em `http://localhost:8000`.
 
 ## Endpoints disponíveis
 
